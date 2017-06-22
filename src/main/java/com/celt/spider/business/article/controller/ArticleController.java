@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by 00013810 on 2017/6/20.
+ * Created by chy on 2017/6/20.
  */
 @RestController
 @RequestMapping("articleService")
