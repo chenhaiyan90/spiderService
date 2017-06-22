@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.celt.spider.business.article.dao.articleMapper">
+  <resultMap id="BaseResultMap" type="com.celt.spider.business.article.model.article">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="md5_url" jdbcType="VARCHAR" property="md5Url" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="origin_url" jdbcType="VARCHAR" property="originUrl" />
+    <result column="origin_name" jdbcType="VARCHAR" property="originName" />
+    <result column="abstracts" jdbcType="VARCHAR" property="abstracts" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="change_time" jdbcType="TIMESTAMP" property="changeTime" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="group" jdbcType="VARCHAR" property="group" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="status_changeTime" jdbcType="TIMESTAMP" property="statusChangetime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.celt.spider.business.article.model.article">
+    <result column="page_urls" jdbcType="LONGVARCHAR" property="pageUrls" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, md5_url, title, url, origin_url, origin_name, abstracts, keywords, create_time, 
+    change_time, type, group, status, status_changeTime
+  </sql>
+  <sql id="Blob_Column_List">
+    page_urls
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.celt.spider.business.article.model.article">
+    insert into article (id, md5_url, title, 
+      url, origin_url, origin_name, 
+      abstracts, keywords, create_time, 
+      change_time, type, group, 
+      status, status_changeTime, page_urls
+      )
+    values (#{id,jdbcType=INTEGER}, #{md5Url,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{originUrl,jdbcType=VARCHAR}, #{originName,jdbcType=VARCHAR}, 
+      #{abstracts,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{changeTime,jdbcType=TIMESTAMP}, #{type,jdbcType=VARCHAR}, #{group,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{statusChangetime,jdbcType=TIMESTAMP}, #{pageUrls,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.celt.spider.business.article.model.article">
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="md5Url != null">
+        md5_url,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="originUrl != null">
+        origin_url,
+      </if>
+      <if test="originName != null">
+        origin_name,
+      </if>
+      <if test="abstracts != null">
+        abstracts,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="changeTime != null">
+        change_time,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="group != null">
+        group,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="statusChangetime != null">
+        status_changeTime,
+      </if>
+      <if test="pageUrls != null">
+        page_urls,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="md5Url != null">
+        #{md5Url,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="originUrl != null">
+        #{originUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="originName != null">
+        #{originName,jdbcType=VARCHAR},
+      </if>
+      <if test="abstracts != null">
+        #{abstracts,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTime != null">
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="group != null">
+        #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="statusChangetime != null">
+        #{statusChangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pageUrls != null">
+        #{pageUrls,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.celt.spider.business.article.model.article">
+    update article
+    <set>
+      <if test="md5Url != null">
+        md5_url = #{md5Url,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="originUrl != null">
+        origin_url = #{originUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="originName != null">
+        origin_name = #{originName,jdbcType=VARCHAR},
+      </if>
+      <if test="abstracts != null">
+        abstracts = #{abstracts,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTime != null">
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="group != null">
+        group = #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="statusChangetime != null">
+        status_changeTime = #{statusChangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pageUrls != null">
+        page_urls = #{pageUrls,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.celt.spider.business.article.model.article">
+    update article
+    set md5_url = #{md5Url,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      origin_url = #{originUrl,jdbcType=VARCHAR},
+      origin_name = #{originName,jdbcType=VARCHAR},
+      abstracts = #{abstracts,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      change_time = #{changeTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=VARCHAR},
+      group = #{group,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      status_changeTime = #{statusChangetime,jdbcType=TIMESTAMP},
+      page_urls = #{pageUrls,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.celt.spider.business.article.model.article">
+    update article
+    set md5_url = #{md5Url,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      origin_url = #{originUrl,jdbcType=VARCHAR},
+      origin_name = #{originName,jdbcType=VARCHAR},
+      abstracts = #{abstracts,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      change_time = #{changeTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=VARCHAR},
+      group = #{group,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      status_changeTime = #{statusChangetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.celt.spider.business.article.model.article">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="md5_url" jdbcType="VARCHAR" property="md5Url" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="origin_url" jdbcType="VARCHAR" property="originUrl" />
+    <result column="origin_name" jdbcType="VARCHAR" property="originName" />
+    <result column="abstract" jdbcType="VARCHAR" property="abstract" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="change_time" jdbcType="TIMESTAMP" property="changeTime" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="group" jdbcType="VARCHAR" property="group" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="status_changeTime" jdbcType="TIMESTAMP" property="statusChangetime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.celt.spider.business.article.model.article">
+    <result column="page_urls" jdbcType="LONGVARCHAR" property="pageUrls" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, md5_url, title, url, origin_url, origin_name, abstract, keywords, create_time, 
+    change_time, type, group, status, status_changeTime
+  </sql>
+  <sql id="Blob_Column_List">
+    page_urls
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.celt.spider.business.article.model.article">
+    insert into article (id, md5_url, title, 
+      url, origin_url, origin_name, 
+      abstract, keywords, create_time, 
+      change_time, type, group, 
+      status, status_changeTime, page_urls
+      )
+    values (#{id,jdbcType=INTEGER}, #{md5Url,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{originUrl,jdbcType=VARCHAR}, #{originName,jdbcType=VARCHAR}, 
+      #{abstract,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{changeTime,jdbcType=TIMESTAMP}, #{type,jdbcType=VARCHAR}, #{group,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{statusChangetime,jdbcType=TIMESTAMP}, #{pageUrls,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.celt.spider.business.article.model.article">
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="md5Url != null">
+        md5_url,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="originUrl != null">
+        origin_url,
+      </if>
+      <if test="originName != null">
+        origin_name,
+      </if>
+      <if test="abstract != null">
+        abstract,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="changeTime != null">
+        change_time,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="group != null">
+        group,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="statusChangetime != null">
+        status_changeTime,
+      </if>
+      <if test="pageUrls != null">
+        page_urls,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="md5Url != null">
+        #{md5Url,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="originUrl != null">
+        #{originUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="originName != null">
+        #{originName,jdbcType=VARCHAR},
+      </if>
+      <if test="abstract != null">
+        #{abstract,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTime != null">
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="group != null">
+        #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="statusChangetime != null">
+        #{statusChangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pageUrls != null">
+        #{pageUrls,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.celt.spider.business.article.model.article">
+    update article
+    <set>
+      <if test="md5Url != null">
+        md5_url = #{md5Url,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="originUrl != null">
+        origin_url = #{originUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="originName != null">
+        origin_name = #{originName,jdbcType=VARCHAR},
+      </if>
+      <if test="abstract != null">
+        abstract = #{abstract,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTime != null">
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="group != null">
+        group = #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="statusChangetime != null">
+        status_changeTime = #{statusChangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pageUrls != null">
+        page_urls = #{pageUrls,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.celt.spider.business.article.model.article">
+    update article
+    set md5_url = #{md5Url,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      origin_url = #{originUrl,jdbcType=VARCHAR},
+      origin_name = #{originName,jdbcType=VARCHAR},
+      abstract = #{abstract,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      change_time = #{changeTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=VARCHAR},
+      group = #{group,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      status_changeTime = #{statusChangetime,jdbcType=TIMESTAMP},
+      page_urls = #{pageUrls,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.celt.spider.business.article.model.article">
+    update article
+    set md5_url = #{md5Url,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      origin_url = #{originUrl,jdbcType=VARCHAR},
+      origin_name = #{originName,jdbcType=VARCHAR},
+      abstract = #{abstract,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      change_time = #{changeTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=VARCHAR},
+      group = #{group,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      status_changeTime = #{statusChangetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

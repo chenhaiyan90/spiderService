@@ -1,0 +1,7 @@
+{
+  "-1000": "paramters cannot be empty.",
+  "-1001": "request has been received earlier.",
+  "-1002": "invalid calculate expression {0}.",
+  "-1003": "{0} cannot be empty.",
+  "-1999": "system error: {0}"
+}
