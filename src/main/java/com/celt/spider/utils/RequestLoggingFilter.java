@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /**
  * @Description： 日志filter
- * Created by Ambitor on 2016/11/7.
+ * Created by chy on 2016/11/7.
  */
 public class RequestLoggingFilter extends AbstractRequestLoggingFilter {
 
@@ -77,9 +77,7 @@ public class RequestLoggingFilter extends AbstractRequestLoggingFilter {
 
     private boolean isNotBinaryOutput(HttpServletRequest request) {
         String uri = request.getRequestURI().toLowerCase();
-        if (uri.startsWith("/charge_manage/active/selectActive")) {
-            return false;
-        }
+
         String method = uri.substring(uri.lastIndexOf('/'));
         if (method.contains("export") || method.contains("download")) {
             return false;

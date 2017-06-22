@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 /**
  * 服务返回通用对象
  * 
- * @author zhouzhichao
+ * @author chy
  *
  */
 @JsonInclude(Include.NON_NULL)

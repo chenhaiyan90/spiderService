@@ -12,8 +12,8 @@ import java.util.Map;
 
 /**
  * @desc: 对分页的基本数据进行一个简单的封装
- * @User: ambitor_luo
- * @Date: 2015/6/23
+ * @User: chy
+ * @Date: 2016/6/20
  */
 @JsonSerialize(using = PageSerializer.class)
 public class Page<T> extends ArrayList<T> {

@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * @desc: Page序列化配置
  * @User: haiyan
- * @Date: 2015/7/14
+ * @Date: 2016/7/14
  */
 public class PageSerializer extends JsonSerializer<Page> {
     @Override

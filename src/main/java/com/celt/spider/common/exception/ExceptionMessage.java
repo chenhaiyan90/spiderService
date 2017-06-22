@@ -15,8 +15,8 @@ import java.util.Map;
 /**
  * 异常信息
  * 
- * @author zhouzhichao
- * @date 2016-03-25
+ * @author chy
+ * @date 2017-03-25
  */
 
 public class ExceptionMessage {

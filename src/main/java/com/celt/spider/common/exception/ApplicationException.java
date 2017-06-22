@@ -7,7 +7,7 @@ import java.text.MessageFormat;
 /**
  * 应用异常
  * 
- * @author zhouzhichao
+ * @author chy
  *
  */
 public class ApplicationException extends Exception {

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by 00013810 on 2017/6/20.
+ * Created by chy on 2017/6/20.
  */
 public class authInterceptor implements HandlerInterceptor {
     protected static Logger logger = LoggerFactory

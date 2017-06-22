@@ -21,8 +21,8 @@ import java.util.Properties;
 
 /**
  * @desc: 分页控件的拦截器
- * @User: ambitor_luo
- * @Date: 2015/6/23
+ * @User: chy
+ * @Date: 2016/6/20
  */
 @Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class}),
         @Signature(type = ResultSetHandler.class, method = "handleResultSets", args = {Statement.class})})

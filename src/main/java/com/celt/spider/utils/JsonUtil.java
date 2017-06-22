@@ -42,13 +42,7 @@ public class JsonUtil {
 	      return  JSON.toJSONString(obj, features);  
 	}
 	
-	
 
-	/**
-	 * 
-	 * @author Jacky
-	 * @return
-	 */
 //	public static  ObjectMapper createObjectJsonMapper() {
 //		ObjectMapper mapper = new ObjectMapper();
 //		mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);
