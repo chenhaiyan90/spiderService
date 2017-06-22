@@ -16,7 +16,7 @@ public class ArticleController {
     @Value("${authKey}")
     private static String authKey;
     protected static Logger logger = LoggerFactory
-            .getLogger(authInterceptor.class);
+            .getLogger(ArticleController.class);
     public Boolean testKey(){
         logger.info("key="+authKey);
         if("".equalsIgnoreCase(authKey)){
